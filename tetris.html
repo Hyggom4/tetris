@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        #gameContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+        #tetrisCanvas {
+            border: 1px solid black;
+            background-color: #f0f0f0;
+            width: 300px;
+            height: 600px;
+        }
+        #nextContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        #nextBlockCanvas {
+            border: 1px solid black;
+            margin-bottom: 20px;
+            width: 150px;
+            height: 150px;
+        }
+        h1 {
+            font-size: 30px;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        #score {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #timer {
+            font-size: 20px;
+            text-align: center;
+        }
+        #audioControls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #gameOverOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: none; /* 기본적으로 숨김 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+        #gameOverOverlay.active {
+            display: flex; /* 활성화 시 표시 */
+        }
+        #gameOverOverlay h2 {
+            font-size: 40px;
+            color: black;
+            margin-bottom: 20px;
+        }
+        #restartButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restartButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+        <div id="nextContainer">
+            <h1>Tetris</h1>
+            <div id="score">Score: 00</div>
+            <div id="timer">Time: 00H 00M 00S</div>
+            <canvas id="nextBlockCanvas" width="150" height="150"></canvas>
+            <div id="audioControls">
+                <audio id="backgroundMusic" autoplay loop controls>
+                    <source src="backgroundsounds.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <div id="gameOverOverlay">
+        <h2>GAME OVER</h2>
+        <button id="restartButton">다시 시작</button>
+    </div>
+    <script src="tetris.js"></script>
+</body>
+</html>
